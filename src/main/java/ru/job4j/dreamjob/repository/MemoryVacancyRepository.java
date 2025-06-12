@@ -25,7 +25,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
                 LocalDateTime.now()));
         save(new Vacancy(0, "Junior+ Java Developer",
                 "Младший разработчик с коммерческим опытом "
-                       + "и уверенным знанием Java",
+                        + "и уверенным знанием Java",
                 LocalDateTime.now()));
         save(new Vacancy(0, "Middle Java Developer",
                 "Разработчик среднего уровня с опытом "
@@ -37,7 +37,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
                 LocalDateTime.now()));
         save(new Vacancy(0, "Senior Java Developer",
                 "Опытный разработчик, способный принимать "
-                       + "архитектурные решения",
+                        + "архитектурные решения",
                 LocalDateTime.now()));
     }
 
@@ -53,8 +53,8 @@ public class MemoryVacancyRepository implements VacancyRepository {
     }
 
     @Override
-    public void deleteById(int id) {
-        vacancies.remove(id);
+    public boolean deleteById(int id) {
+        return vacancies.remove(id) != null;
     }
 
     @Override
