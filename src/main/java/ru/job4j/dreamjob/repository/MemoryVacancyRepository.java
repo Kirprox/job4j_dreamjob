@@ -22,26 +22,26 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private MemoryVacancyRepository() {
         save(new Vacancy(0, "Intern Java Developer",
                 "Стажер, начинающий разработчик",
-                LocalDateTime.now()));
+                LocalDateTime.now(), true));
         save(new Vacancy(0, "Junior Java Developer",
                 "Младший разработчик с базовыми знаниями Java",
-                LocalDateTime.now()));
+                LocalDateTime.now(), true));
         save(new Vacancy(0, "Junior+ Java Developer",
                 "Младший разработчик с коммерческим опытом "
                         + "и уверенным знанием Java",
-                LocalDateTime.now()));
+                LocalDateTime.now(), true));
         save(new Vacancy(0, "Middle Java Developer",
                 "Разработчик среднего уровня с опытом "
                         + "участия в проектах",
-                LocalDateTime.now()));
+                LocalDateTime.now(), true));
         save(new Vacancy(0, "Middle+ Java Developer",
                 "Разработчик среднего уровня с лидерскими качествами "
                         + "и опытом менторства",
-                LocalDateTime.now()));
+                LocalDateTime.now(), true));
         save(new Vacancy(0, "Senior Java Developer",
                 "Опытный разработчик, способный принимать "
                         + "архитектурные решения",
-                LocalDateTime.now()));
+                LocalDateTime.now(), true));
     }
 
     @Override
@@ -60,7 +60,8 @@ public class MemoryVacancyRepository implements VacancyRepository {
     public boolean update(Vacancy vacancy) {
         return vacancies.computeIfPresent(vacancy.getId(),
                 (id, oldVacancy) -> new Vacancy(oldVacancy.getId(), vacancy.getTitle(),
-                        vacancy.getDescription(), vacancy.getCreationDate())) != null;
+                        vacancy.getDescription(), vacancy.getCreationDate(),
+                        vacancy.getVisible())) != null;
     }
 
     @Override
