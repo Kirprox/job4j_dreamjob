@@ -5,6 +5,7 @@ import ru.job4j.dreamjob.dto.FileDto;
 import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.repository.CandidateRepository;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ public class SimpleCandidateService implements CandidateService {
     @Override
     public Candidate save(Candidate candidate, FileDto image) {
         saveNewFile(candidate, image);
+        candidate.setCreationDate(LocalDateTime.now());
         return candidateRepository.save(candidate);
     }
 

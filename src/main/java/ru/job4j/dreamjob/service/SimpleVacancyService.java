@@ -3,17 +3,20 @@ package ru.job4j.dreamjob.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.dreamjob.dto.FileDto;
 import ru.job4j.dreamjob.model.Vacancy;
+import ru.job4j.dreamjob.repository.Sql2oVacancyRepository;
 import ru.job4j.dreamjob.repository.VacancyRepository;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Optional;
 
 @Service
 public class SimpleVacancyService implements VacancyService {
     private final VacancyRepository vacancyRepository;
+
     private final FileService fileService;
 
-    public SimpleVacancyService(VacancyRepository vacancyRepository, FileService fileService) {
+    public SimpleVacancyService(Sql2oVacancyRepository vacancyRepository, FileService fileService) {
         this.vacancyRepository = vacancyRepository;
         this.fileService = fileService;
     }
@@ -21,6 +24,7 @@ public class SimpleVacancyService implements VacancyService {
     @Override
     public Vacancy save(Vacancy vacancy, FileDto image) {
         saveNewFile(vacancy, image);
+        vacancy.setCreationDate(LocalDateTime.now());
         return vacancyRepository.save(vacancy);
     }
 
