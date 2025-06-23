@@ -46,6 +46,7 @@ public class SimpleCandidateService implements CandidateService {
     @Override
     public boolean update(Candidate candidate, FileDto image) {
         var isNewFileEmpty = image.getContent().length == 0;
+        candidate.setCreationDate(LocalDateTime.now());
         if (isNewFileEmpty) {
             return candidateRepository.update(candidate);
         }

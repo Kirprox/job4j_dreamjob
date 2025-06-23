@@ -47,6 +47,7 @@ public class SimpleVacancyService implements VacancyService {
     @Override
     public boolean update(Vacancy vacancy, FileDto image) {
         var isNewFileEmpty = image.getContent().length == 0;
+        vacancy.setCreationDate(LocalDateTime.now());
         if (isNewFileEmpty) {
             return vacancyRepository.update(vacancy);
         }

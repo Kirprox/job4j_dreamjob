@@ -21,10 +21,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(Model model) {
-        var user = new User();
-        model.addAttribute("user", user);
-        user.setName("Гость");
+    public String getLoginPage() {
         return "users/login";
     }
 
@@ -47,10 +44,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegisterPage(Model model) {
-        var user = new User();
-        user.setName("Гость");
-        model.addAttribute("user", user);
+    public String getRegisterPage() {
         return "users/register";
     }
 
